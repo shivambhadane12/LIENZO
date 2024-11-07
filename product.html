@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="product.css">
+    <title>Product Page</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    
+    <!-- Product A -->
+    <div id="productA">
+        <h2>Product A</h2>
+        <p>Price: $10</p>
+        <button onclick="addToCart('Product A', 10)">Add Product A to Cart</button>
+    </div>
+    
+    <!-- Product B -->
+    <div id="productB">
+        <h2>Product B</h2>
+        <p>Price: $15</p>
+        <button onclick="addToCart('Product B', 15)">Add Product B to Cart</button>
+    </div>
+
+    <script>
+        function addToCart(name, price) {
+            // Create product object with name, price, and quantity
+            const product = { name, price, quantity: 1 };
+
+            // Get existing cart from local storage or create a new array
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Check if the product is already in the cart
+            const existingProduct = cart.find(item => item.name === product.name);
+            if (existingProduct) {
+                // Increment the quantity if it exists
+                existingProduct.quantity += 1;
+            } else {
+                // Add the new product to the cart
+                cart.push(product);
+            }
+
+            // Save the updated cart back to local storage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert(`${name} added to cart!`);
+        }
+    </script>
+</body>
+</html>
