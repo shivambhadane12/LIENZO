@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Cart Section -->
+    <div class="cart">
+      <h2>Shopping Bag</h2>
+      <p>2 items in your bag.</p>
+      <div class="product-list">
+        <!-- Product 1 -->
+        <div class="product-item">
+          <img src="https://via.placeholder.com/100" alt="Floral Print Wrap Dress">
+          <div class="product-info">
+            <h4>Floral Print Wrap Dress</h4>
+            <p>Color: Blue, Size: 42</p>
+            <p class="price">$20.50</p>
+            <div class="quantity">
+              <button class="minus" onclick="changeQuantity(this, -1)">-</button>
+              <span>2</span>
+              <button class="plus" onclick="changeQuantity(this, 1)">+</button>
+            </div>
+            <p class="total-price">$41.00</p>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-item">
+          <img src="https://via.placeholder.com/100" alt="Floral Print Wrap Dress">
+          <div class="product-info">
+            <h4>Floral Print Wrap Dress</h4>
+            <p>Color: Blue, Size: 42</p>
+            <p class="price">$30.50</p>
+            <div class="quantity">
+              <button class="minus" onclick="changeQuantity(this, -1)">-</button>
+              <span>1</span>
+              <button class="plus" onclick="changeQuantity(this, 1)">+</button>
+            </div>
+            <p class="total-price">$30.50</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Summary Section -->
+    <div class="summary">
+      
+      <div class="coupon">
+        <h3>Coupon Code</h3>
+        <input type="text" placeholder="Coupon Code">
+        <button id="apply-coupon">Apply</button>
+      </div>
+      <div class="cart-total">
+        <p>Subtotal: <span id="subtotal">$71.50</span></p>
+        <p>Discount: <span id="discount">-$4.00</span></p>
+        <h2>Total: <span id="cart-total">$67.50</span></h2>
+        <button id="checkout">Checkout</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
