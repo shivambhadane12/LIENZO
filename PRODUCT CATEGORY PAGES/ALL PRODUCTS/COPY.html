@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=300px, initial-scale=1.0"> -->
+  <title>All Products Lienzo</title>
+  <link rel="stylesheet" href="allproducts.css">
+  <link rel="stylesheet" href="card.css">
+  <link rel="stylesheet" href="/HOME PAGE/index.css">
+  <!-- <script src="allproducts copy.js"></script> -->
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo"><img src="lienzologo.jpeg" height="100%" ></div>
+      <div id="name">LIENZO</div>
+      <div id="tabs">
+        <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items">HOME</div></a>
+        <a href="/CART PAGE/index.html" style="text-decoration: none;"><div class="tab_items">CART</div></a>
+        <a href="/SIGNUP AND LOGIN PAGE/login_page.html" style="text-decoration: none;"><div class="tab_items">LOGIN</div></a>
+      </div>
+      <div id="tabs_icon">
+        <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="home.png" height="100%"></div></a>
+        <a href="/CART PAGE/index.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="/" height="100%"></div></a>
+        <a href="/SIGNUP AND LOGIN PAGE/login_page.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="user.png" height="100%"></div></a>
+      </div>
+    </div>
+<div class="fake-header"><h1>DON'T STRECH</h1></div>
+    <div id="buttons">
+      <div class="buttonoftop" id="allproducts_button">
+        ALL PRODUCTS
+      </div>
+      <a href="/PRODUCT CATEGORY PAGES/HOODIES/hoodies.html"><div class="buttonoftop" id="hoddies_button">
+          HODDIES
+      </div></a>
+      <a href="/PRODUCT CATEGORY PAGES/T-SHIRTS/tshirts.html"><div class="buttonoftop" id="tshirts_button">
+        T-SHIRTS
+      </div></a>
+      <a href="/PRODUCT CATEGORY PAGES/SWEAT SHIRTS/sweatshirts.html"><div class="buttonoftop" id="sweatshirt_button">
+        SWEAT SHIRTS
+      </div></a>
+    </div>
+    <div id="wholeproducts">
+      <div id="whole_products_row1"> 
+        <div id="product_container">
+          <div id="productA" class="product">
+            <div id="image">
+              <img src="lienzologo.jpeg" alt="">
+            </div>
+            <h4>Product A</h4>
+            <p>Price: $10</p>
+            <div class="buttons_of_action">
+              <button class="addtocart_button">Buy Now</button>
+              <button  class="addtocart_button" onclick="addToCart('Product A', 10)">Add to Cart</button>
+            </div>
+        </div>
+        </div>
+      </div>
+
+      <div id="whole_products_row2"> 
+        <div id="product_container">
+          <div id="productA" class="product">
+            <div id="image">
+              <img src="lienzologo.jpeg" alt="">
+            </div>
+            <h4>Product A</h4>
+            <p>Price: $10</p>
+            <div class="buttons_of_action">
+              <button class="addtocart_button">Buy Now</button>
+              <button  class="addtocart_button" onclick="addToCart('Product A', 10)">Add to Cart</button>
+            </div>
+        </div>
+        </div>
+      
+      </div>
+      <!-- <div id="whole_products_row2"> 
+  
+      <div id="product_container">
+        <div id="image_of_product"><img src="image1.png" height="100%"></div>
+        <div id="description_of_product">
+          <div id="name_of_product"><h5>MECHANICAL SPECIAL HODIEE</h5></div>
+          <div id="price">
+            <div id="current_price">₹799/-</div>
+            <div id="past_price"></div>
+          </div>
+          <div id="buy">
+            <button id="buynow_button">BUYNOW</button>
+            <button id="addtocart_button">ADD TO CART</button>
+          </div>
+        </div>
+    </div>
+    
+      </div> -->
+    </div>
+  </div> 
+  <script>
+    function addToCart(name, price) {
+        // Create product object with name, price, and quantity
+        const product = { name, price, quantity: 1 };
+
+        // Get existing cart from local storage or create a new array
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if the product is already in the cart
+        const existingProduct = cart.find(item => item.name === product.name);
+        if (existingProduct) {
+            // Increment the quantity if it exists
+            existingProduct.quantity += 1;
+        } else {
+            // Add the new product to the cart
+            cart.push(product);
+        }
+
+        // Save the updated cart back to local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(`${name} added to cart!`);
+    }
+</script>
+<script src="allproducts.js"></script>
+</body>
+</html>

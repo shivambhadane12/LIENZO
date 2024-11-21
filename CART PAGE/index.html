@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="/LIENZO/HOME PAGE/index.css">
+  <style>
+    /* General Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    #main {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      max-width: 1200px;
+      width: 100%;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Cart Section */
+    .cart {
+      flex: 2;
+    }
+
+    .cart h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .product-list {
+      margin-top: 20px;
+    }
+
+    .product-item {
+      display: flex;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .product-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .product-info h4 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .price, .total-price {
+      font-weight: bold;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .quantity button {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background-color: #ddd;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Summary Section */
+    .summary {
+      flex: 1;
+      padding: 20px;
+      border-left: 1px solid #ddd;
+    }
+
+    .coupon, .cart-total {
+      margin-bottom: 20px;
+    }
+
+    .coupon input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .coupon button {
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .cart-total p, .cart-total h2 {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+
+    #checkout {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .product-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .summary {
+        padding: 15px;
+        border-left: none;
+        border-top: 1px solid #ddd;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cart h2, .product-info h4, .cart-total h2 {
+        font-size: 18px;
+      }
+
+      .price, .total-price {
+        font-size: 16px;
+      }
+
+      .product-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .product-item img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+      }
+
+      .quantity {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .summary {
+        padding: 15px;
+      }
+
+      .coupon button, #checkout {
+        padding: 8px;
+        font-size: 14px;
+      }
+    }
+    #header{
+      position: absolute;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo"><a href="/HOME PAGE/index.html" style="height: 100%;"><img src="lienzologo.jpeg" height="100%" ></a></div>
+      <div id="name">LIENZO</div>
+      <div id="tabs">
+        <!-- <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items">HOME</div></a> -->
+        <a href="index.html" style="text-decoration: none;"><div class="tab_items">CART</div></a>
+        <a href="/SIGNUP AND LOGIN PAGE/singup.html" style="text-decoration: none;"><div class="tab_items">LOGIN</div></a>
+      </div>
+      <div id="tabs_icon">
+        <!-- <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="home.png" height="100%"></div></a> -->
+        <a href="index.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="grocery-store.png" height="100%"></div></a>
+        <a href="/SIGNUP AND LOGIN PAGE/singup.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="user.png" height="100%"></div></a>
+      </div>
+    </div> 
+    <!-- <div class="fake-header"><h1>DON'T STRECH</h1></div> -->
+    <div class="container">
+      <!-- Cart Section -->
+      <div class="cart">
+        <h2>Shopping Bag</h2>
+        <p>2 items in your bag.</p>
+        <div class="product-list">
+          <!-- Product 1 -->
+          <div class="product-item">
+            <img src="https://via.placeholder.com/100" alt="Floral Print Wrap Dress">
+            <div class="product-info">
+              <h4>Floral Print Wrap Dress</h4>
+              <p>Color: Blue, Size: 42</p>
+              <p class="price">$20.50</p>
+              <div class="quantity">
+                <button class="minus" onclick="changeQuantity(this, -1)">-</button>
+                <span>2</span>
+                <button class="plus" onclick="changeQuantity(this, 1)">+</button>
+              </div>
+              <p class="total-price">$41.00</p>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="product-item">
+            <img src="https://via.placeholder.com/100" alt="Floral Print Wrap Dress">
+            <div class="product-info">
+              <h4>Floral Print Wrap Dress</h4>
+              <p>Color: Blue, Size: 42</p>
+              <p class="price">$30.50</p>
+              <div class="quantity">
+                <button class="minus" onclick="changeQuantity(this, -1)">-</button>
+                <span>1</span>
+                <button class="plus" onclick="changeQuantity(this, 1)">+</button>
+              </div>
+              <p class="total-price">$30.50</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Section -->
+      <div class="summary">
+        <div class="coupon">
+          <h3>Coupon Code</h3>
+          <input type="text" placeholder="Coupon Code">
+          <button id="apply-coupon">Apply</button>
+        </div>
+        <div class="cart-total">
+          <p>Subtotal: <span id="subtotal">$71.50</span></p>
+          <p>Discount: <span id="discount">-$4.00</span></p>
+          <h2>Total: <span id="cart-total">$67.50</span></h2>
+          <button id="checkout"><a href="/Payment checkout/payment.html" style="text-decoration: none; color: white;">Checkout</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="payment_container" style="background-color: #fff; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center;">
+    <!-- Company Logo -->
+    <div id="logo" style="margin-bottom: 20px;">
+        <img src="/lienzologo.jpeg" alt="Company Logo" style="width: 80px; height: auto; border-radius: 8px;">
+    </div>
+
+    <!-- Heading -->
+    <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: #007bff;">Scan to Pay</h2>
+
+    <!-- QR Code Display -->
+    <div id="QR_CODE" style="margin: 20px auto;">
+        <img src="https://via.placeholder.com/150" alt="QR Code" style="width: 150px; height: 150px; border: 2px solid #007bff; border-radius: 10px;">
+    </div>
+
+    <!-- Payment App Logos -->
+    <div id="payment_apps" style="display: flex; justify-content: center; gap: 15px; margin: 15px 0;">
+        <img src="google-pay.png" alt="Google Pay" style="width: 40px; height: auto;">
+        <img src="phonepe.png" alt="PhonePe" style="width: 40px; height: auto;">
+        <img src="paytm.png" alt="Paytm" style="width: 40px; height: auto;">
+    </div>
+
+    <!-- BHIM and UPI App Icons Below -->
+    <div id="bhim_upi_apps" style="display: flex; justify-content: center; gap: 15px; margin: 15px 0;">
+        <img src="bhim-upi.png" alt="BHIM UPI" style="width: 40px; height: auto;">
+        <img src="upi.png" alt="UPI Icon" style="width: 40px; height: auto;">
+    </div>
+
+    <!-- Optional: Warning message area -->
+    <div id="warning" style="color: red; font-size: 12px; text-align: center; margin: 15px 0;"></div>
+
+    <!-- Payment Button -->
+    <div id="done" style="background-color: #28a745; color: white; padding: 12px 20px; border-radius: 10px; cursor: pointer; text-align: center; margin-top: 20px; font-weight: bold; font-size: 16px; transition: background-color 0.3s;" onclick="makepayment()">
+        Pay with UPI App
+    </div>
+</div>
+  <!-- <script src="script.js"></script> -->
+  <!-- <script>
+// Sample cart data to hold items
+let cartItems = [
+  {
+    id: 1,
+    name: "Floral Print Wrap Dress",
+    color: "Blue",
+    size: "42",
+    price: 20.5,
+    quantity: 2,
+    imgSrc: "https://via.placeholder.com/100"
+  },
+  {
+    id: 2,
+    name: "Floral Print Wrap Dress",
+    color: "Blue",
+    size: "42",
+    price: 30.5,
+    quantity: 1,
+    imgSrc: "https://via.placeholder.com/100"
+  }
+];
+
+// Function to render cart items
+function renderCart() {
+  const productList = document.querySelector('.product-list');
+  productList.innerHTML = ''; // Clear previous items
+
+  cartItems.forEach(item => {
+    // Calculate total price for each item
+    const totalPrice = item.price * item.quantity;
+
+    // Create HTML for each item
+    const productHTML = `
+      <div class="product-item">
+        <img src="${item.imgSrc}" alt="${item.name}">
+        <div class="product-info">
+          <h4>${item.name}</h4>
+          <p>Color: ${item.color}, Size: ${item.size}</p>
+          <p class="price">$${item.price.toFixed(2)}</p>
+          <div class="quantity">
+            <button class="minus" onclick="changeQuantity(this, -1)">-</button>
+            <span>${item.quantity}</span>
+            <button class="plus" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+          <p class="total-price">$${totalPrice.toFixed(2)}</p>
+        </div>
+      </div>
+    `;
+    productList.insertAdjacentHTML('beforeend', productHTML);
+  });
+
+  // Initial calculation for total
+  updateCartTotal();
+}
+
+// Update quantity and total for each product
+function changeQuantity(button, amount) {
+  const quantityElement = button.parentNode.querySelector("span");
+  let quantity = parseInt(quantityElement.innerText);
+  quantity += amount;
+  if (quantity < 1) quantity = 1; // Ensure minimum quantity is 1
+  quantityElement.innerText = quantity;
+
+  // Update total price for each product
+  const price = parseFloat(button.closest(".product-info").querySelector(".price").innerText.replace("$", ""));
+  const totalPriceElement = button.closest(".product-info").querySelector(".total-price");
+  totalPriceElement.innerText = `$${(price * quantity).toFixed(2)}`;
+
+  // Update cart total after quantity change
+  updateCartTotal();
+}
+
+// Calculate and update the cart total
+function updateCartTotal() {
+  let subtotal = 0;
+  document.querySelectorAll(".total-price").forEach(item => {
+    subtotal += parseFloat(item.innerText.replace("$", ""));
+  });
+
+  const discount = 4.00; // Fixed discount for example
+  const total = subtotal - discount;
+
+  document.getElementById("subtotal").innerText = `$${subtotal.toFixed(2)}`;
+  document.getElementById("cart-total").innerText = `$${total.toFixed(2)}`;
+}
+
+// Placeholder function for applying coupon
+document.getElementById("apply-coupon").addEventListener("click", () => {
+  alert("Coupon applied!");
+});
+
+// Initial render
+document.addEventListener('DOMContentLoaded', renderCart);
+
+
+  </script> -->
+<script>
+// Sample cart data to hold items
+let cartItems = [
+  {
+    id: 1,
+    name: "Floral Print Wrap Dress",
+    color: "Blue",
+    size: "42",
+    price: 20.5,
+    quantity: 2,
+    imgSrc: "https://via.placeholder.com/100"
+  },
+  {
+    id: 2,
+    name: "Floral Print Wrap Dress",
+    color: "Blue",
+    size: "42",
+    price: 30.5,
+    quantity: 1,
+    imgSrc: "https://via.placeholder.com/100"
+  }
+];
+
+// Set initial discount values
+let discountPercentage = 0;
+let maxDiscount = 0;
+
+// Sample valid coupons with percentage discount and maximum discount amount
+const coupons = {
+  "SAVE10": { percentage: 10, maxDiscount: 15 },  // 10% discount up to $15
+  "SAVE20": { percentage: 20, maxDiscount: 30 },  // 20% discount up to $30
+  "SAVE5": { percentage: 5, maxDiscount: 5 }      // 5% discount up to $5
+};
+
+// Function to render cart items
+function renderCart() {
+  const productList = document.querySelector('.product-list');
+  productList.innerHTML = ''; // Clear previous items
+
+  cartItems.forEach(item => {
+    // Calculate total price for each item
+    const totalPrice = item.price * item.quantity;
+
+    // Create HTML for each item
+    const productHTML = `
+      <div class="product-item">
+        <img src="${item.imgSrc}" alt="${item.name}">
+        <div class="product-info">
+          <h4>${item.name}</h4>
+          <p>Color: ${item.color}, Size: ${item.size}</p>
+          <p class="price">$${item.price.toFixed(2)}</p>
+          <div class="quantity">
+            <button class="minus" onclick="changeQuantity(this, -1)">-</button>
+            <span>${item.quantity}</span>
+            <button class="plus" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+          <p class="total-price">$${totalPrice.toFixed(2)}</p>
+        </div>
+      </div>
+    `;
+    productList.insertAdjacentHTML('beforeend', productHTML);
+  });
+
+  // Initial calculation for total
+  updateCartTotal();
+}
+
+// Update quantity and total for each product
+function changeQuantity(button, amount) {
+  const quantityElement = button.parentNode.querySelector("span");
+  let quantity = parseInt(quantityElement.innerText);
+  quantity += amount;
+  if (quantity < 1) quantity = 1; // Ensure minimum quantity is 1
+  quantityElement.innerText = quantity;
+
+  // Update total price for each product
+  const price = parseFloat(button.closest(".product-info").querySelector(".price").innerText.replace("$", ""));
+  const totalPriceElement = button.closest(".product-info").querySelector(".total-price");
+  totalPriceElement.innerText = `$${(price * quantity).toFixed(2)}`;
+
+  // Update cart total after quantity change
+  updateCartTotal();
+}
+
+// Calculate and update the cart total
+function updateCartTotal() {
+  let subtotal = 0;
+  document.querySelectorAll(".total-price").forEach(item => {
+    subtotal += parseFloat(item.innerText.replace("$", ""));
+  });
+
+  // Calculate discount based on percentage, capped at max discount
+  let discount = (subtotal * discountPercentage) / 100;
+  if (discount > maxDiscount) {
+    discount = maxDiscount;
+  }
+  const total = subtotal - discount;
+
+  document.getElementById("subtotal").innerText = `$${subtotal.toFixed(2)}`;
+  document.getElementById("discount").innerText = `-$${discount.toFixed(2)} (${discountPercentage}%, Max: $${maxDiscount})`;
+  document.getElementById("cart-total").innerText = `$${total.toFixed(2)}`;
+}
+
+// Function to apply coupon code
+document.getElementById("apply-coupon").addEventListener("click", () => {
+  const couponCode = document.querySelector('.coupon input[type="text"]').value.toUpperCase();
+  if (coupons[couponCode] !== undefined) {
+    discountPercentage = coupons[couponCode].percentage;
+    maxDiscount = coupons[couponCode].maxDiscount;
+    alert(`Coupon applied! You've received a ${discountPercentage}% discount (up to $${maxDiscount} max).`);
+  } else {
+    alert("Invalid coupon code. Please try again.");
+    discountPercentage = 0;  // Reset discount if invalid
+    maxDiscount = 0;
+  }
+  updateCartTotal(); // Recalculate totals after applying discount
+});
+
+// Initial render
+document.addEventListener('DOMContentLoaded', renderCart);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+#footer{
+    background-color: black;
+    height: 25%;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact_us,#others_footer{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    height: 100%;
+    width: 50%;
+    color: white;
+    border-radius: 20px;
+}
+
+@media (max-width:480px) {
+    #contact_us,#others_footer{
+        gap: 10%;
+        flex-direction: column;
+        padding: 10px;
+        font-size: 10px;
+}
+}

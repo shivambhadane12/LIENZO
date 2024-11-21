@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup with OTP Verification</title>
+    <link rel="stylesheet" href="login_page.css">
+    <style>
+        .otp-section {
+            /* display: none; Initially hidden */
+            /* margin-top: 20px; */
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            height: 10px;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            -moz-appearance: textfield;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .verify-button {
+            height: 30px;
+            width: 100px;
+            border-radius: 20px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div class="screen">
+    <div class="leftside">   
+        <img class="img1" src="lienzologo.jpeg" alt="">
+    </div>  
+    <div class="login">
+        <div class="signup">
+            <span class="welcome">Welcome</span>
+            <span class="account">Create Account</span>
+            <form class="login_details" id="signup-form">
+                <input class="first_name" name="Fname" type="text" placeholder="First Name" required>
+                <input class="last_name" name="Lname" type="text" placeholder="Last Name" required>
+                <input class="email" name="email_user" id="email" type="email" placeholder="Email Address" required>
+                <input class="password" name="password" type="password" placeholder="Password" required>
+                <button type="button" id="signup"  onclick="sendMail()" style="height: 30px; width: 70px; border-radius: 20px; background-color: white;">SIGN UP</button>
+                
+                <div class="otp-section" id="otp-section" style="display: none; margin-top: 20px;">
+                    <label for="otp">Enter OTP:</label>
+                    <input type="number" id="otp" maxlength="6" placeholder="6-digit OTP" required>
+                    <button type="button" class="verify-button" id="" onclick="verifyOtp();">Verify OTP</button>
+                    <div id="message"></div>
+                </div>
+
+                <div class="icons">
+                    <div class="google" id="loginbuttonofgoogle"><img src="google.png" height="30px"></div>
+                    <div class="fb"><img src="facebook.png" height="30px"></div>
+                    <div class="x"><img src="twitter.png" height="30px"></div>
+                </div>
+                <a href="login_page.html" style="text-decoration: none; font-size: medium;">
+                    <span class="txt1">Already have an account? Log in</span>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+<input type="button" name="dfafdas" id="" onclick="sendotp()">
+<!-- <script>
+    // OTP GENERATION
+const signup = document.getElementById("signup");
+function sendotp(){
+    const otp = Math.floor(Math.random()*1000000);
+const nodemailer = require('nodemailer');
+const {google} = require('googleapis');
+const { OAuth2Client } = require('google-auth-library');
+const { error } = require('console');
+const { oauth2 } = require('googleapis/build/src/apis/oauth2');
+
+const CLIENT_ID = "590649544-25m5e3a0gq0h4957lph16p7c1omblgaj.apps.googleusercontent.com";
+const CLIENT_SECRET = "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";
+const REDIRECT_URI="https://developers.google.com/oauthplayground";
+const REFRESH_TOKEN = "1//04R-GuqEZX2muCgYIARAAGAQSNwF-L9IrC5e4o1WrI3bLLcM4yVQJ9Y1ApoVNJyjjZ5oO_bFcD6ofI9jkDP1RkyHgx5y-tg6sjDY";
+
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI);
+oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+
+async function  sendMail(){
+
+    try {
+        const accessToken= await oAuth2Client.getAccessToken();
+        const transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user : 'fashionclubserver@gmail.com',
+                clientId : CLIENT_ID,
+                clientSecret : CLIENT_SECRET,
+                refreshToken: REFRESH_TOKEN,
+                accessToken : accessToken,
+            }
+        });
+
+        const mailOptions = {
+            from: 'fashionclubserver@gmail.com',
+            to: 'bavdhanekunal90@gmail.com',
+            subject : "Your One-Time Password (OTP) for Verification by LIENZO",
+            text : "hello",
+            html:`We have received a request to verify your account. To complete this process, please use the One-Time Password (OTP) provided below. This OTP is required to proceed with your verification and will expire in 10 minutes for security purposes.
+
+Your OTP: <h1>${otp}</h1>
+
+If you did not request this verification, please ignore this email, and your account will remain secure.
+
+For any assistance or questions, feel free to contact our support team.
+
+Thank you for your attention,
+LIENZO`,
+        };
+        const result = await transport.sendMail(mailOptions)
+        return result;
+    } catch (error) {
+        return error;
+    }
+}
+
+sendMail().then((result)=>console.log('Email is sent',result))
+.catch((error)=>console.log(error.message));
+}
+
+</script> -->
+<!-- <script src="signup_page.js"></script> -->
+</body>
+</html>

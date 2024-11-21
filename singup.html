@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    
+    
+    <div class="verifydiv">
+        
+        <form action="/lienzo/otpverify" method="post">
+            
+            <div class="email">
+                <label class="emailtext" for="emailinput">Email:</label>
+                <input type="email" name="emailid" id="getemail" class="emailinput" value="" placeholder="example@gmail.com">
+<!-- <button >Send OTP</button></div> -->
+<button class="sendotpbtn" type="submit" id="sendotp">
+    Send
+</button>
+</form>
+</div>
+
+
+
+
+<div   class="hidee" id="otpdiv" >
+    <form action="/lienzo/verify" method="post">
+
+        <script>
+
+            let sendbtn=document.getElementById(`sendotp`)
+            let otpverifydiv=document.getElementById(`otpdiv`)
+            
+            sendbtn.addEventListener(`click`,(req,res)=>{
+            
+                otpverifydiv.classList.remove(`hidee`)
+            
+            })
+            
+               </script> 
+              
+
+</body>
+</html>

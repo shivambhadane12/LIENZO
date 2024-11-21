@@ -1,0 +1,355 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.product-container {
+    display: flex;
+    padding: 20px;
+    gap: 30px;
+}
+
+.product-images {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    padding-right: 20px;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+}
+
+.slide-image {
+    display: none;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.slide-image.active {
+    display: block;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.thumbnail-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 5px;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    opacity: 1;
+    border: 2px solid #333;
+}
+
+.product-details {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+
+.price {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.discounted-price {
+    font-weight: bold;
+    color: #e53935;
+}
+
+.original-price {
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.discount {
+    color: #43a047;
+    margin-left: 5px;
+}
+
+.size-selection button {
+    margin: 5px 5px 0 0;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.add-to-bag,
+.wishlist {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px 5px 0 0;
+    background-color: #000000;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.delivery input {
+    padding: 8px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.delivery button {
+    padding: 8px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+}
+
+.product-images {
+    flex: 1;
+    max-width: 45%;
+    /* Reduced the width from 50% to 45% */
+    position: relative;
+    padding-right: 20px;
+}
+
+.product-images img {
+    width: 100%;
+    /* Ensure the image takes full width of the container */
+    max-height: 600px;
+    /* Limit the maximum height of images */
+    object-fit: cover;
+    /* Ensures the image maintains its aspect ratio while filling the space */
+    border-radius: 5px;
+}
+
+.product-details {
+    flex: 1;
+    background-color: #fff;
+    padding: 25px;
+    /* Adds space inside the product details box */
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Adds a subtle shadow */
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    /* Adds space below the title */
+}
+
+.product-details .description {
+    color: #555;
+    margin-bottom: 15px;
+    /* Adds space below the description */
+}
+
+.price {
+    font-size: 18px;
+    margin: 15px 0;
+    /* Adds space above and below the price section */
+}
+
+.discounted-price {
+    font-weight: bold;
+    color: #e53935;
+}
+
+.original-price {
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.discount {
+    color: #43a047;
+    margin-left: 5px;
+}
+
+.size-selection p {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.size-selection button {
+    margin: 5px 5px 0 0;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.add-to-bag,
+.wishlist {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 15px 5px 0 0;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delivery {
+    margin-top: 20px;
+}
+
+.delivery input {
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 5px;
+    width: 150px;
+}
+
+.delivery button {
+    padding: 10px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+}
+
+.highlights {
+    margin-top: 25px;
+    line-height: 1.6;
+    /* Increases line spacing */
+}
+
+.highlights h2 {
+    margin-bottom: 10px;
+}
+.add-to-bag{
+    border: #000000 solid;
+}
+.add-to-bag:hover{
+    color: #000000;
+    background-color: white;
+
+}
+/* Responsive adjustments */
+
+/* Tablets and small desktops (768px and up) */
+@media (max-width: 1024px) {
+    .product-container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .product-images,
+    .product-details {
+        max-width: 100%;
+    }
+
+    .product-details {
+        padding: 20px;
+    }
+
+    .product-details h1 {
+        font-size: 22px;
+    }
+
+    .price,
+    .size-selection,
+    .delivery,
+    .highlights {
+        margin-top: 15px;
+    }
+}
+
+/* Mobile devices (less than 768px) */
+@media (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .product-images img {
+        max-height: 250px;
+        /* Smaller image height for mobile */
+    }
+
+    .product-details {
+        padding: 15px;
+    }
+
+    .product-details h1 {
+        font-size: 20px;
+    }
+
+    .add-to-bag,
+    .wishlist {
+        color: white;
+        padding: 10px 15px;
+        width: 100%;
+        /* Full width for mobile */
+        text-align: center;
+        margin: 10px 0;
+    }
+}
+
+/* Extra small devices (less than 480px) */
+@media (max-width: 480px) {
+    .product-container {
+        padding: 10px;
+    }
+
+    .product-details h1 {
+        font-size: 18px;
+    }
+
+    .product-details {
+        padding: 10px;
+    }
+
+    .price,
+    .size-selection,
+    .delivery,
+    .highlights {
+        margin-top: 10px;
+    }
+
+    .size-selection button {
+        padding: 8px;
+    }
+
+    .add-to-bag,
+    .wishlist {
+        color: white;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}

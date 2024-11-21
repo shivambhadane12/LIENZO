@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        #main {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #payment_container {
+            height: 80%;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
+            flex-wrap: wrap;
+        }
+
+        #middle_container {
+            background-color: #1e1e1e;
+            height: auto;
+            max-width: 350px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #logo img {
+            height: 500px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        #QR_CODE {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        #QR_CODE img {
+            width: 150px;
+            height: 150px;
+        }
+
+        #regenerateQR {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #007bff;
+            height: 40px;
+            width: 100%;
+            border-radius: 10px;
+            gap: 10px;
+            background-color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #fff;
+        }
+
+        #regenerateQR:hover {
+            background-color: #007bff;
+        }
+
+        #done {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #28a745;
+            height: 40px;
+            width: 100%;
+            border-radius: 10px;
+            gap: 10px;
+            background-color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #fff;
+        }
+
+        #done:hover {
+            background-color: #28a745;
+        }
+
+        #warning {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h5 {
+            font-size: 14px;
+            margin-top: 15px;
+            color: #bbb;
+        }
+
+        @media (max-width: 768px) {
+            #payment_container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #middle_container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            #logo img {
+                height: 80px;
+            }
+
+            #QR_CODE img {
+                width: 120px;
+                height: 120px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #logo {
+                display: none;
+            }
+
+            #payment_container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #middle_container {
+                width: 100%;
+            }
+
+            #QR_CODE img {
+                width: 100px;
+                height: 100px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="main">
+    <div id="payment_container">
+        <div id="logo"><img src="/lienzologo.jpeg" alt="Company Logo"></div>
+        <div id="middle_container">
+            <h2>Scan to Pay</h2>
+            <div id="QR_CODE"><img src="" alt="QR Code"></div>
+            <div id="regenerateQR" onclick="createQR()">Regenerate QR <img src="refresh.png" alt="Refresh Icon"></div>
+            <div id="warning"></div>
+            <div id="done" onclick="makepayment()">Pay with UPI App</div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

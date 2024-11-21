@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Checkout Page with Multiple Products</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+            #payment_container {
+            height: 80%;
+            width: 80%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
+            flex-wrap: wrap;
+        }
+
+        #middle_container {
+            position: absolute;
+            top: 10%;
+            background-color: #1e1e1e;
+            height: auto;
+            max-width: 350px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #logo img {
+            display: none   ;
+            height: 500px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        #QR_CODE {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        #QR_CODE img {
+            width: 150px;
+            height: 150px;
+        }
+
+        #regenerateQR {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #007bff;
+            height: 40px;
+            width: 100%;
+            border-radius: 10px;
+            gap: 10px;
+            background-color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #fff;
+        }
+
+        #regenerateQR:hover {
+            background-color: #007bff;
+        }
+
+        #done {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #28a745;
+            height: 40px;
+            width: 100%;
+            border-radius: 10px;
+            gap: 10px;
+            background-color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #fff;
+        }
+
+        #done:hover {
+            background-color: #28a745;
+        }
+
+        #warning {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h5 {
+            font-size: 14px;
+            margin-top: 15px;
+            color: #bbb;
+        }
+
+        @media (max-width: 768px) {
+            #payment_container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #middle_container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            #logo img {
+                height: 80px;
+            }
+
+            #QR_CODE img {
+                width: 120px;
+                height: 120px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #logo {
+                display: none;
+            }
+
+            #payment_container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #middle_container {
+                width: 100%;
+            }
+
+            #QR_CODE img {
+                width: 100px;
+                height: 100px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+        }
+</style>
+<body>
+    <div class="container">
+        <!-- Product Details Section on Top -->
+        <div class="product-section">
+            <!-- Product 1 -->
+            <div class="product-details">
+                <h2>Product 1 Details</h2>
+                <div class="product-info">
+                    <img src="i1.webp" alt="Product Image 1" class="product-image">
+                    <div class="product-text">
+                        <h3>Premium Workflow Plan</h3>
+                        <p>Access 3000 tasks per month with advanced features, perfect for automating complex workflows.</p>
+                        
+                        <!-- Quantity Selector -->
+                        <label for="quantity1">Quantity:</label>
+                        <input type="number" id="quantity1" value="1" min="1" max="10">
+                        
+                        <!-- Total Price Display -->
+                        <p class="total-price">Total Price: ₹<span id="total-price1">99.00</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-details">
+                <h2>Product 2 Details</h2>
+                <div class="product-info">
+                    <img src="i1.webp" alt="Product Image 2" class="product-image">
+                    <div class="product-text">
+                        <h3>Basic Workflow Plan</h3>
+                        <p>Access 1000 tasks per month, ideal for small-scale workflows and personal automation needs.</p>
+                        
+                        <!-- Quantity Selector -->
+                        <label for="quantity2">Quantity:</label>
+                        <input type="number" id="quantity2" value="1" min="1" max="10">
+                        
+                        <!-- Total Price Display -->
+                        <p class="total-price">Total Price: ₹<span id="total-price2">49.00</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- Combined Total Price Section -->
+         <div class="combined-total">
+            <h2>Combined Total Price</h2>
+            <p>Total: ₹<span id="combined-total-price">148.00</span></p>
+        </div>
+        <div>
+            <h5 style="color: red; display: flex; align-items: center; justify-content: center;">*TO APPLY COUPON ADD TO CART AND PROCEED FOR CHCEKCOUT</h5>
+        </div>
+
+        <!-- Billing Address Section -->
+        <div class="billing">
+            <h2>Billing Address</h2>
+            <form>
+               
+                <select required>
+                    <option value="" disabled selected>Select City</option>
+                    <option value="pune">Pune</option>
+                </select>
+                <select required>
+                    <option value="" disabled selected>Select State</option>
+                    <option value="Bibewadi-Campus">Bibewadi-Campus</option>
+                    <option value="Kondhwa-Campus">Kondhwa-Campus</option>
+                </select>
+            </form>
+        </div>
+        <!-- Payment Information Section -->
+        <div class="payment-info">
+           
+            <p class="terms">By clicking Checkout Now you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+            <button class="checkout-button">Checkout Now</button>
+            <div class="secure">🔒 Secure server</div>
+            <p class="info">Safe and secure payment checkout.</p>
+        </div>
+    </div>
+
+    <!-- <div id="payment_container">
+        <div id="logo"><img src="/lienzologo.jpeg" alt="Company Logo"></div>
+        <div id="middle_container">
+            <h2>Scan to Pay</h2>
+            <div id="QR_CODE"><img src="" alt="QR Code"></div> -->
+            <!-- <div id="regenerateQR">Regenerate QR <img src="refresh.png" alt="Refresh Icon"></div> -->
+            <!-- <div id="warning"></div>
+            <div id="done">Pay with UPI App</div>
+        </div>
+    </div> -->
+
+    <div id="payment_container" style="background-color: #fff; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center;">
+        <!-- Company Logo -->
+        <div id="logo" style="margin-bottom: 20px;">
+            <img src="/lienzologo.jpeg" alt="Company Logo" style="width: 80px; height: auto; border-radius: 8px;">
+        </div>
+    
+        <!-- Heading -->
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: #007bff;">Scan to Pay</h2>
+    
+        <!-- QR Code Display -->
+        <div id="QR_CODE" style="margin: 20px auto;">
+            <img src="https://via.placeholder.com/150" alt="QR Code" style="width: 150px; height: 150px; border: 2px solid #007bff; border-radius: 10px;">
+        </div>
+    
+        <!-- Payment App Logos -->
+        <div id="payment_apps" style="display: flex; justify-content: center; gap: 15px; margin: 15px 0;">
+            <img src="google-pay.png" alt="Google Pay" style="width: 40px; height: auto;">
+            <img src="phonepe.png" alt="PhonePe" style="width: 40px; height: auto;">
+            <img src="paytm.png" alt="Paytm" style="width: 40px; height: auto;">
+        </div>
+    
+        <!-- BHIM and UPI App Icons Below -->
+        <div id="bhim_upi_apps" style="display: flex; justify-content: center; gap: 15px; margin: 15px 0;">
+            <img src="bhim-upi.png" alt="BHIM UPI" style="width: 40px; height: auto;">
+            <img src="upi.png" alt="UPI Icon" style="width: 40px; height: auto;">
+        </div>
+    
+        <!-- Optional: Warning message area -->
+        <div id="warning" style="color: red; font-size: 12px; text-align: center; margin: 15px 0;"></div>
+    
+        <!-- Payment Button -->
+        <div id="done" style="background-color: #28a745; color: white; padding: 12px 20px; border-radius: 10px; cursor: pointer; text-align: center; margin-top: 20px; font-weight: bold; font-size: 16px; transition: background-color 0.3s;" onclick="makepayment()">
+            Pay with UPI App
+        </div>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="checkout.js"></script>
+
+</body>
+</html>

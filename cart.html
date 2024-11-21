@@ -1,0 +1,119 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+</head>
+<style>
+    #header{
+    height: 15%;
+    width: 100%;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+}
+
+#header{
+    background-color: black;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    color: white;
+}
+
+#fakeheader{
+    height: 10%;
+    width: 100%;
+}
+</style>
+<body>
+    <div id="main"> -->
+        <!-- <div id="header" style="border-bottom: red solid;">
+            <div id="logo"><img src="lienzologo.jpeg" height="100%" ></div>
+            <div id="name">LIENZO</div>
+            <div id="tabs">
+              <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items">HOME</div></a>
+              <a href="/CART PAGE/cart_page.html" style="text-decoration: none;"><div class="tab_items">CART</div></a>
+              <a href="/SIGNUP AND LOGIN PAGE/login_page.html" style="text-decoration: none;"><div class="tab_items">LOGIN/SIGNUP</div></a>
+            </div>
+          </div> -->
+          <!-- <div id="fakeheader"></div>
+          <h1>Your Cart</h1>
+    <div id="cartItems"></div>
+    </div>
+
+    <script>
+        function displayCart() {
+            let cartHTML = "";
+            // Retrieve cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartContainer = document.getElementById("cartItems");
+    
+            // Check if cart is empty
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty!</p>";
+            } else {
+                cartContainer.innerHTML = ""; // Clear the container content
+    
+                // Loop through each item in the cart and create HTML
+                for (let i = 0; i < cartItems.length; i++) {
+                    const item = cartItems[i];
+                    cartHTML += `
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p>Price: ₹${item.price}</p>
+                            <p>Quantity: ${item.quantity}</p>
+                            <button onclick="decreaseQuantity(${i})">Remove One</button>
+                            <button onclick="increaseQuantity(${i})">Add One</button>
+                            <button onclick="buyNow(${i})">Buy Now</button>
+                        </div>
+                    `;
+                }
+                cartContainer.innerHTML += cartHTML;
+            }
+        }
+    
+        function decreaseQuantity(index) {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cartItems[index].quantity > 1) {
+                cartItems[index].quantity -= 1;
+            } else {
+                cartItems.splice(index, 1);
+            }
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            displayCart();
+        }
+    
+        function increaseQuantity(index) {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            cartItems[index].quantity += 1;
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            displayCart();
+        }
+    
+        function buyNow(index) {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const item = cartItems[index];
+            
+            // Redirect to checkout or handle the buy process
+            alert(`Proceeding to buy ${item.name} with quantity ${item.quantity}`);
+            
+            // You can also navigate to a checkout page if defined
+            // window.location.href = "/checkout.html"; // Example redirect
+        }
+    
+        // Display the cart items when the page loads
+        displayCart();
+    </script>
+    
+    
+    
+    
+    
+</body>
+</html> -->

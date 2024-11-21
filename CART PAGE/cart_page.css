@@ -1,0 +1,72 @@
+*{
+    margin : 0%;
+    padding : 0%;
+    box-sizing : border-box;
+}
+
+html,body{
+    height : 100%;
+    width : 100%;
+}
+
+#buy_now{
+    display: flex;
+    align-items: center;
+    border: black solid;
+    border-radius: 20px;
+    padding: 10px;
+    height: 40px;
+    margin-left: 200px;
+}
+
+#buy_now:hover{
+background-color: rgb(219, 228, 204);
+}
+
+#header{
+    background-color: black;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    color: white;
+}
+
+#name{
+    margin-left: 20px;
+    font-size: xx-large;
+}
+
+#tabs{
+    display: flex;
+    align-items: center;
+    margin-left: 450px;
+}
+
+.tab_items{
+    padding: 5px;
+    color: white;
+    height: 80%;
+    margin-left: 70px;
+}
+
+.tab_items:hover{
+    color: rgb(0, 0, 0);
+  background-color: white;
+  border: white solid;
+  border-radius: 20px;
+}
+
+#fakeheader{
+    height: 10%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+

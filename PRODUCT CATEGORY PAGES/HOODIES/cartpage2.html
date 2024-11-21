@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/LIENZO//PRODUCT CATEGORY PAGES/ALL PRODUCTS/header.css">
+  <link rel="stylesheet" href="/LIENZO//PRODUCT CATEGORY PAGES/ALL PRODUCTS/footer.css">
+  <link rel="stylesheet" href="/LIENZO//PRODUCT CATEGORY PAGES/ALL PRODUCTS/allproducts.css">
+  <link rel="stylesheet" href="/LIENZO/product summary/index.css">
+  <link rel="stylesheet" href="/LIENZO/product summary/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #cart-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .cart-item-details {
+      flex: 1;
+      margin-left: 15px;
+    }
+    .cart-item-details h4 {
+      margin: 0 0 5px 0;
+    }
+    .cart-item-details p {
+      margin: 0;
+      color: #555;
+    }
+    .cart-item button {
+      padding: 8px 15px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .cart-item button:hover {
+      background-color: #c82333;
+    }
+    .cart-summary {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    a {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #007bff;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <div id="logo"><a href="/LIENZO/HOME PAGE/index.html" style="height: 100%;"><img src="lienzologo.jpeg" style="height: 100%;" ></a></div>
+    <div id="name">LIENZO</div>
+    <div id="tabs">
+      <!-- <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items">HOME</div></a> -->
+      <a href="/LIENZO/CART PAGE/index.html" style="text-decoration: none;"><div class="tab_items">CART</div></a>
+      <a href="/LIENZO/SIGNUP AND LOGIN PAGE/singup.html" style="text-decoration: none;"><div class="tab_items">LOGIN</div></a>
+    </div>
+    <div id="tabs_icon">
+      <!-- <a href="/HOME PAGE/index.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="home.png" height="100%"></div></a> -->
+      <a href="/LIENZO/CART PAGE/index.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="grocery-store.png" height="100%"></div></a>
+      <a href="/LIENZO/SIGNUP AND LOGIN PAGE/singup.html" style="text-decoration: none;"><div class="tab_items_icon"><img src="user.png" height="100%"></div></a>
+    </div>
+  </div>
+  <div id="fake-header"></div>
+  <h1>Your Cart</h1>
+  <div id="cart-container"></div>
+  <div class="cart-summary" id="cart-summary"></div>
+  <a href="allproducts.html">Back to Products</a>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartContainer = document.getElementById("cart-container");
+      const cartSummary = document.getElementById("cart-summary");
+
+      cartContainer.innerHTML = ""; // Clear existing items
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty!</p>";
+        cartSummary.innerHTML = "";
+        return;
+      }
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+
+        const cartItem = `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p>Price: ₹${item.price}</p>
+              <p>Quantity: ${item.quantity}</p>
+            </div>
+            <button onclick="removeFromCart(${item.id})">Remove</button>
+          </div>
+        `;
+        cartContainer.insertAdjacentHTML("beforeend", cartItem);
+      });
+
+      cartSummary.innerHTML = `Total: ₹${total}`;
+    }
+
+    function removeFromCart(id) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart = cart.filter(item => item.id !== id); // Remove the selected product
+
+      // Save the updated cart back to localStorage
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart(); // Re-render the cart
+    }
+
+    // Render the cart when the page loads
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+</body>
+</html>
