@@ -87,6 +87,7 @@ html,body{
 
 #quote{
     height: 10%;
+    width: 100%;
     font-size: x-large;
     display: flex;
     justify-content: center;
@@ -106,7 +107,6 @@ html,body{
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     height: 50%;
     width: 100%;
     background-color: aqua;
@@ -481,6 +481,7 @@ html,body{
 #footer_part2{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding-top: 20px;
     padding-left: 300px;
     border-radius: 20px;
@@ -488,7 +489,6 @@ html,body{
     width: 50%;
     color: white;
     z-index: 10;
-
 }
 
 #footer_logo{
@@ -506,7 +506,6 @@ html,body{
 }
 
 #social_strip{
-    position: absolute;
     background-color: rgb(0, 0, 0);
     height: 40px;
     width: 100%;
@@ -584,23 +583,59 @@ html,body{
     }
 
     #quote{
+
         font-size: large;
     }
 
     #about-us{
-        flex-direction: column;
+        display: block;
+        overflow: hidden;
     }
     #details{
         height: 50%;
         width: 100%;
         font-size: medium;
         padding: 20px;
+        overflow: hidden;
+        font-size: 12px;
     }
 
-    #square3{
+    .carousel-container{
+ 
+        margin-top: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .carousel-square{
+        height: 100px;
+        width: 40%;
+    }
+
+    #offer{
+        height: 30%;
+        margin: 0;
+    }
+    #page1{
+        /* border: #000000 solid; */
+    }
+    #page2{
+        margin: 0;
         display: none;
     }
-
+    #page3{
+        height: 40%;
+        width: 100%;
+    }
+    #slideshow_container{
+        height: 100%;
+        width: 100%;
+    }
+    #page4{
+        font-size: 10px;
+        height: 100%;
+    }
+    #lienzo_x_vit{
+    }
     .button-container{
         display: flex;
         flex-direction: column;
@@ -610,6 +645,7 @@ html,body{
         height: 50%;
         width: 100%;
     }
+
 
     /* .link-button{
         height: 10%;
@@ -683,11 +719,14 @@ html,body{
     
 
     #footer_part2,#footer_part1{
+        padding-top: 0;
         padding-left: 10px;
+        font-size: 10px;
     }
 
     #footer_part2{
-        padding-top: 70px;
+        display: block;
+        padding-top: 10%;
     }
 
     #footer_logo{
@@ -715,12 +754,14 @@ html,body{
     #page5{
         height: 15%;
         width: 100%;
+        margin: 0;
     }
 
     #badges{
         margin-bottom: 10px;
         align-items: center;
         gap: 10%;
+        overflow: hidden;
     }
 
     .badge{
@@ -729,8 +770,8 @@ html,body{
     }
 
     #badges_descriptions{
-        margin-bottom: 50px;
-        gap: 8%;
+        display: none;
+
     }
 
     .badge_des{
