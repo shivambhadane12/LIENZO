@@ -18,6 +18,7 @@ html,body{
 }
 
 #header{
+    display: none;
     z-index: 100;
     position: fixed;
     background-color: black;
@@ -74,9 +75,12 @@ html,body{
 }
 
 #page2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 90%;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(124, 45, 45);
 }
 
 #countdown{
@@ -85,7 +89,7 @@ html,body{
     width: 100%;
 }
 
-#quote{
+#quote{ 
     height: 10%;
     width: 100%;
     font-size: x-large;
@@ -534,11 +538,6 @@ html,body{
         align-items: center;
         justify-content: center;
     }
-    #header{
-        position: fixed;
-        height: 10%;
-        width: 100%;
-    }
     
     #logo{
         border-radius: 50%;
@@ -583,7 +582,6 @@ html,body{
     }
 
     #quote{
-
         font-size: large;
     }
 
@@ -608,7 +606,7 @@ html,body{
     }
     .carousel-square{
         height: 100px;
-        width: 40%;
+        width: 30%;
     }
 
     #offer{
@@ -620,10 +618,12 @@ html,body{
     }
     #page2{
         margin: 0;
-        display: none;
+        height: 40%;
+        padding-top: 0;
+        margin-bottom: 100px;
     }
     #page3{
-        height: 40%;
+        height: 30%;
         width: 100%;
     }
     #slideshow_container{
@@ -752,6 +752,7 @@ html,body{
     }
 
     #page5{
+        
         height: 15%;
         width: 100%;
         margin: 0;
